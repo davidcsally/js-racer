@@ -3,6 +3,7 @@
 const chick = document.getElementById("chick");
 const chicken = document.getElementById("chicken")
 const raceTrack = document.getElementById("raceTrack")
+const restartButton = document.querySelector("button");
 let context = raceTrack.getContext('2d');
 const chickSprite = new Image()
 chickSprite.src = "chick.jpg";
@@ -26,7 +27,7 @@ chickenSprite.src = "greychicken.jpg"
 let chickXPos = 0;
 let chickYPos = 0
 let chickenXPos =0;
-let chickenYPos = 50;
+let chickenYPos = 70;
 
 context.drawImage(chickSprite, chickXPos, chickYPos, 40, 40);
 context.drawImage(chickenSprite, chickenXPos, chickenYPos, 40, 40);
@@ -39,6 +40,16 @@ const checkWin = () =>{
 	if(chickenXPos > raceTrack.width - 28) {
 		alert("THE CHICKEN HAS WON!")
 	}
+}
+
+const restartGame = () =>{
+	raceTrack.width=raceTrack.width;
+	chickXPos = 0;
+	chickenXPos = 0;
+	context.drawImage(chickSprite, chickXPos, chickYPos, 40, 40);
+	context.drawImage(chickenSprite, chickenXPos, chickenYPos, 40, 40);
+	context.stroke();
+	alert("The chickens prepare for another race...")
 }
 
 const move = (e) => {	
@@ -57,5 +68,8 @@ checkWin();
 
 document.onkeydown = move;
 
+restartButton.addEventListener("click", ()=>{
+	restartGame();
+})
 
 
